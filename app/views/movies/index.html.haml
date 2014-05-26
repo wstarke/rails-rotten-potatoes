@@ -5,7 +5,7 @@
   %thead
     %tr
       %th 
-        %a{:href => "#{movies_path}?order=title"} Movie Title
+        %a#title{:href => movies_path({:order => 'title'})} Movie Title
       %th 
         %a{:href => "#{movies_path}?order=rating"} Rating
       %th Release Date
