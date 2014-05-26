@@ -4,8 +4,10 @@
 %table#movies
   %thead
     %tr
-      %th Movie Title
-      %th Rating
+      %th 
+        %a{:href => "#{movies_path}?order=title"} Movie Title
+      %th 
+        %a{:href => "#{movies_path}?order=rating"} Rating
       %th Release Date
       %th More Info
   %tbody
