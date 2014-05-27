@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  helper_method :hilight
 
   def show
     id = params[:id] # retrieve movie ID from URI route
@@ -38,4 +39,11 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def hilight(column)
+    if(params[:order].to_s == column)
+      return 'hilite'
+    else
+      return nil
+    end
+  end
 end

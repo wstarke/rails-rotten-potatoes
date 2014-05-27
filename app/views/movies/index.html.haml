@@ -4,11 +4,11 @@
 %table#movies
   %thead
     %tr
-      %th 
+      %th{:class => hilight('title')}
         %a#title_header{:href => movies_path({:order => 'title'})} Movie Title
-      %th 
-        %a{:href => "#{movies_path}?order=rating"} Rating
-      %th
+      %th{:class => hilight('rating')}
+        %a{:href => movies_path({order:  'rating'})} Rating
+      %th{:class => hilight('release_date')}
         %a#release_date_header{:href => "#{movies_path}?order=release_date"} Release Date
       %th More Info
   %tbody
