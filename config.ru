@@ -2,3 +2,6 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run Rottenpotatoes::Application
+
+#Heroku
+#http://quiet-brushlands-2843.herokuapp.com/movies

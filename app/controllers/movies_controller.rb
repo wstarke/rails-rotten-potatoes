@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   helper_method :hilight
+  helper_method :chosen_rating?
 
   def show
     id = params[:id] # retrieve movie ID from URI route
@@ -13,6 +14,7 @@ class MoviesController < ApplicationController
       @movies = Movie.order params[:order]
     else
       array_ratings = params[:ratings].keys
+      @chosen_ratings = array_ratings
       @movies = Movie.where(rating: array_ratings).order params[:order]
     end
   end
@@ -51,5 +53,11 @@ class MoviesController < ApplicationController
     else
       return nil
     end
+  end
+
+  def chosen_rating?(rating)
+    chosen_ratings = params[:ratings]
+    return true if chosen_ratings.nil?
+    chosen_ratings.include? rating
   end
 end
