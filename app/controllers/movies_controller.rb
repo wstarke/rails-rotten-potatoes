@@ -9,13 +9,15 @@ class MoviesController < ApplicationController
   end
 
   def index
+    session[:ratings] = params[:ratings] unless params[:ratings].nil?
+    session[:order] = params[:order] unless params[:order].nil?
     @all_ratings = ['G','PG','PG-13','R']
-    if params[:ratings].nil?
-      @movies = Movie.order params[:order]
+    if session[:ratings].nil?
+      @movies = Movie.order session[:order]
     else
-      array_ratings = params[:ratings].keys
+      array_ratings = session[:ratings].keys
       @chosen_ratings = array_ratings
-      @movies = Movie.where(rating: array_ratings).order params[:order]
+      @movies = Movie.where(rating: array_ratings).order session[:order]
     end
   end
 
@@ -48,7 +50,7 @@ class MoviesController < ApplicationController
   end
 
   def hilight(column)
-    if(params[:order].to_s == column)
+    if(session[:order].to_s == column)
       return 'hilite'
     else
       return nil
@@ -56,7 +58,7 @@ class MoviesController < ApplicationController
   end
 
   def chosen_rating?(rating)
-    chosen_ratings = params[:ratings]
+    chosen_ratings = session[:ratings]
     return true if chosen_ratings.nil?
     chosen_ratings.include? rating
   end
